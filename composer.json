@@ -1,0 +1,13 @@
+{
+    "name": "smtech/stmarkssmarty",
+    "description": "A standard Smarty install for St. Mark's projects",
+    "require": {
+        "smarty/smarty": "3.1.*"
+    },
+    "authors": [
+        {
+            "name": "Seth Battis",
+            "email": "sethbattis@stmarksschool.org"
+        }
+    ]
+}
