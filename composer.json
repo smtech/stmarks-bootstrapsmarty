@@ -9,5 +9,8 @@
             "name": "Seth Battis",
             "email": "sethbattis@stmarksschool.org"
         }
-    ]
+    ],
+    "autoload": {
+	    "classmap": [""]
+    }
 }
