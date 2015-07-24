@@ -8,16 +8,23 @@ final class StMarksSmarty extends Smarty {
 	const ENGINE_KEY = 'engine';
 
 	private $messages = array();
+	private $stylesheets = array();
 	
 	private static function testWriteableDirectory($directory) {
 		$success = false;
-		if (file_exists($directory) && is_dir($directory) && !is_writable($directory)) {
-			$success = chmod($directory, 0775);
-		} elseif (!file_exists($directory) {
-			$succes = mkdir($directory);
+		if (file_exists($directory)) {
+			if (is_dir($directory)) {
+				if (is_writable($directory)) {
+					$success = true;
+				} else {
+					$success = chmod($directory, 0775);
+				}
+			}
+		} elseif (!file_exists($directory)) {
+			$success = mkdir($directory);
 		}
 		
-		if (!$succes) {
+		if (!$success) {
 			throw new StMarksSmarty_Exception(
 				"The directory '{$directory}' cannot be created or cannot be made writeable",
 				StMarksSmarty_Exception::UNWRITABLE_DIRECTORY
@@ -29,18 +36,22 @@ final class StMarksSmarty extends Smarty {
 		$success = false;
 		
 		if (file_exists($directory)) {
-			if (is_dir($directory) && !is_readable($directory)) {
-				$success = chmod($directory, 0555);
+			if (is_dir($directory)) {
+				if (is_readable($directory)) {
+					$success = true;
+				} else {
+					$success = chmod($directory, 0555);
+				}
 			}
 		} else {
 			$success = mkdir($directory);
 			throw new StMarksSmarty_Exception(
 				"The directory '{$directory}' was created (should have already existed and been populated)",
 				StMarksSmarty_Exception::MISSING_FILES
-			)
+			);
 		}
 		
-		if (!$success)) {
+		if (!$success) {
 			throw new StMarksSmarty_Exception(
 				"The directory '{$directory}' is not readable",
 				StMarksSmarty_Exception::UNREADABLE_DIRECTORY
@@ -95,25 +106,32 @@ final class StMarksSmarty extends Smarty {
 	 *
 	 * @return void
 	 **/
-	private function __construct($template = null, $config = null, $compile = null, $cache = null) {
+	public function __construct($template = null, $config = null, $compile = null, $cache = null) {
+		if (self::$singleton !== null) {
+			throw new StMarksSmarty_Exception(
+				'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
+				StMarksSmarty_Exception::SINGLETON
+			);
+		}
 		parent::__construct();
+		self::$singleton = $this;
 		
-		$engineTemplateDir = array(self::ENGINE_KEY => realpath(__DIR__ . '/templates'));
-		$engineConfigDir = array(self::ENGINE_KEY => realpath(__DIR__ . '/configs'));
-		$engineCompileDir = realpath(__DIR__ . '/templates_c');
-		$engineCacheDir = realpath(__DIR__ . '/cache');
+		$engineTemplateDir = array(self::ENGINE_KEY => __DIR__ . '/templates');
+		$engineConfigDir = array(self::ENGINE_KEY => __DIR__ . '/configs');
+		$engineCompileDir = __DIR__ . '/templates_c';
+		$engineCacheDir = __DIR__ . '/cache';
 		
 		$this->setTemplateDir(self::directoryArrayMerge($template, $engineTemplateDir));
 		$this->setConfigDir(self::directoryArrayMerge($config, $engineConfigDir));
 		$this->setCompileDir(self::directoryArrayMerge($compile, $engineCompileDir, false));
 		$this->setCacheDir(self::directoryArrayMerge($cache, $engineCacheDir, false));
 		
-		foreach($this->getTemplateDir() as $templateDir) {
-			self::testReadableDirectory($templateDir);
+		foreach($this->getTemplateDir() as $key => $dir) {
+			self::testReadableDirectory($dir);
 		}
 		
-		foreach($this->getConfigDir() as $configDir) {
-			self::testReadableDirectory($configDir);
+		foreach($this->getConfigDir() as $key => $dir) {
+			self::testReadableDirectory($dir);
 		}
 		
 		self::testWriteableDirectory($this->getCompileDir());
@@ -125,13 +143,32 @@ final class StMarksSmarty extends Smarty {
 			'APP_NAME' => 'St. Mark&rsquo;s School'
 		);
 		$this->assign('metadata', $preliminaryMetadata);
+		
+		$this->stylesheets[] = $preliminaryMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/stylesheet.css';
+		$this->assign('stylesheets', $this->stylesheets);
 	}
 	
 	/** singleton */
-	private function __clone() {}
+	private function __clone() {
+		if (self::$singleton !== null) {
+			throw new StMarksSmarty_Exception(
+				'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
+				StMarksSmarty_Exception::SINGLETON
+			);
+		}
+		parent::__clone();
+	}
 	
 	/** singleton */
-	private function __wakeup() {}
+	private function __wakeup() {
+		if (self::$singleton !== null) {
+			throw new StMarksSmarty_Exception(
+				'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
+				StMarksSmarty_Exception::SINGLETON
+			);
+		}
+		parent::__wakeup();
+	}
 	
 	public function addMessage($title, $content, $class = 'message') {
 		$this->messages[] = new NotificationMessage($title, $content, $class);
@@ -144,9 +181,10 @@ final class StMarksSmarty extends Smarty {
 }
 
 class StMarksSmarty_Exception extends Exception {
-	const UNREADABLE_DIRECTORY = 1;
-	const UNWRITABLE_DIRECTORY = 2;
-	const MISSING_FILES = 3;
+	const SINGLETON = 1;
+	const UNREADABLE_DIRECTORY = 2;
+	const UNWRITABLE_DIRECTORY = 3;
+	const MISSING_FILES = 4;
 }
 	
 ?>

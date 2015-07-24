@@ -3,17 +3,16 @@
 
 <head>
 	<title>{$metadata['APP_NAME']}</title>
-	<link rel="stylesheet" href="{$metadata['APP_URL']}/stylesheet.css" />
+	{foreach $stylesheets as $stylesheet}
+		<link rel="stylesheet" href="{$stylesheet}" type="text/css" />
+	{/foreach}
 </head>
 
 <body>
 
 <header id="header">
 	<div id="header-logo"></div>
-	<ul id="navigation-menu">
-		<li><a href="{$metadata['APP_URL']}/app.php">Home</a></li>
-		<li><a href="{$metadata['APP_URL']}/admin">Admin</a></li>
-	</ul>
+	{include file="navigation-menu.tpl"}
 </header>
 
 {if count($messages) > 0}
