@@ -1,3 +1,4 @@
+{config_load file="stmarkssmarty.conf"}
 {include file="header.tpl"}
 
 <div id="content">
