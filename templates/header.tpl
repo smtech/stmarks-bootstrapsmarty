@@ -3,8 +3,8 @@
 
 <head>
 	<title>{$metadata['APP_NAME']}</title>
-	{foreach $stylesheets as $stylesheet}
-		<link rel="stylesheet" href="{$stylesheet}" type="text/css" />
+	{foreach $uiStylesheets as $name => $stylesheet}
+		<link rel="stylesheet" href="{$stylesheet}" {if !empty($name) && !is_int($name)}name="{$name}"{/if} type="text/css" />
 	{/foreach}
 </head>
 
@@ -15,10 +15,10 @@
 	{include file="navigation-menu.tpl"}
 </header>
 
-{if count($messages) > 0}
+{if count($uiMessages) > 0}
 <div id="messages">
 	<ul>
-		{foreach $messages as $message}
+		{foreach $uiMessages as $message}
 			<li>
 				<div class="message {$message->class|default:"message"}">
 					<span class="title">{$message->title}</span><br />

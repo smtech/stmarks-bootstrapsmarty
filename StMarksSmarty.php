@@ -5,7 +5,12 @@ final class StMarksSmarty extends Smarty {
 	private static $singleton = null;
 
 	const APP_KEY = 'app';
-	const ENGINE_KEY = 'engine';
+	const UI_KEY = 'StMarksSmarty';
+
+	private $uiTemplateDir = null;
+	private $uiConfigDir = null;
+	private $uiCompileDir = null;
+	private $uiCacheDir = null;
 
 	private $messages = array();
 	private $stylesheets = array();
@@ -59,22 +64,22 @@ final class StMarksSmarty extends Smarty {
 		}
 	}
 	
-	private static function directoryArrayMerge($appDir, $engineDir, $arrayResult = true) {
+	private static function appendUiDefaults($appDir, $uiDir, $arrayResult = true) {
 		if ($arrayResult) {
 			if (!empty($appDir)) {
 				if (is_array($appDir)) {
-					return array_merge($appDir, $engineDir);
+					return array_merge($appDir, $uiDir);
 				} else {
-					return array_merge(array(self::APP_KEY => $appDir), $engineDir);
+					return array_merge(array(self::APP_KEY => $appDir), $uiDir);
 				}
 			} else {
-				return $engineDir;
+				return $uiDir;
 			}
 		} else {
 			if (!empty($appDir)) {
 				return $appDir;
 			} else {
-				return $engineDir;
+				return $uiDir;
 			}
 		}
 	}
@@ -112,19 +117,20 @@ final class StMarksSmarty extends Smarty {
 				'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
 				StMarksSmarty_Exception::SINGLETON
 			);
+		} else {
+			parent::__construct();
+			self::$singleton = $this;
 		}
-		parent::__construct();
-		self::$singleton = $this;
 		
-		$engineTemplateDir = array(self::ENGINE_KEY => __DIR__ . '/templates');
-		$engineConfigDir = array(self::ENGINE_KEY => __DIR__ . '/configs');
-		$engineCompileDir = __DIR__ . '/templates_c';
-		$engineCacheDir = __DIR__ . '/cache';
+		$this->uiTemplateDir = array(self::UI_KEY => __DIR__ . '/templates');
+		$this->uiConfigDir = array(self::UI_KEY => __DIR__ . '/configs');
+		$this->uiCompileDir = __DIR__ . '/templates_c';
+		$this->uiCacheDir = __DIR__ . '/cache';
 		
-		$this->setTemplateDir(self::directoryArrayMerge($template, $engineTemplateDir));
-		$this->setConfigDir(self::directoryArrayMerge($config, $engineConfigDir));
-		$this->setCompileDir(self::directoryArrayMerge($compile, $engineCompileDir, false));
-		$this->setCacheDir(self::directoryArrayMerge($cache, $engineCacheDir, false));
+		$this->setTemplateDir($template);
+		$this->setConfigDir($config);
+		$this->setCompileDir($compile);
+		$this->setCacheDir($cache);
 		
 		foreach($this->getTemplateDir() as $key => $dir) {
 			self::testReadableDirectory($dir);
@@ -144,30 +150,55 @@ final class StMarksSmarty extends Smarty {
 		);
 		$this->assign('metadata', $preliminaryMetadata);
 		
-		$this->stylesheets[] = $preliminaryMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/stylesheet.css';
+		$this->stylesheets[self::UI_KEY] = $preliminaryMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/stylesheet.css';
 		$this->assign('stylesheets', $this->stylesheets);
 	}
 	
 	/** singleton */
 	private function __clone() {
-		if (self::$singleton !== null) {
-			throw new StMarksSmarty_Exception(
-				'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
-				StMarksSmarty_Exception::SINGLETON
-			);
-		}
-		parent::__clone();
+		throw new StMarksSmarty_Exception(
+			'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
+			StMarksSmarty_Exception::SINGLETON
+		);
 	}
 	
 	/** singleton */
 	private function __wakeup() {
-		if (self::$singleton !== null) {
-			throw new StMarksSmarty_Exception(
-				'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
-				StMarksSmarty_Exception::SINGLETON
-			);
+		throw new StMarksSmarty_Exception(
+			'StMarksSmarty is a singleton class, use the factory method StMarksSmarty::getSmarty() instead of ' . __METHOD__,
+			StMarksSmarty_Exception::SINGLETON
+		);
+	}
+	
+	/** avoid losing the UI templates */
+	public function setTemplateDir($template, $isConfig = false) {
+		if ($isConfig) {
+			return parent::setTemplateDir($template, $isConfig);
+		} else {
+			return parent::setTemplateDir(self::appendUiDefaults($template, $this->uiTemplateDir));
 		}
-		parent::__wakeup();
+	}
+	
+	/** avoid losing the UI configs */
+	public function setConfigDir($config) {
+		return parent::setConfigDir(self::appendUiDefaults($config, $this->uiConfigDir));
+	}
+	
+	public function setCompileDir($compile) {
+		return parent::setCompileDir(self::appendUiDefaults($compile, $this->uiCompileDir, false));
+	}
+	
+	public function setCacheDir($cache) {
+		return parent::setCacheDir(self::appendUiDefaults($cache, $this->uiCacheDir, false));
+	}
+	
+	/** add a new stylesheet */
+	public function addStylesheet($stylesheet, $key = null) {
+		if (empty($key)) {
+			$this->stylesheets[] = $stylesheet;
+		} else {
+			$this->stylesheets[$key] = $stylesheet;
+		}
 	}
 	
 	public function addMessage($title, $content, $class = 'message') {
@@ -175,7 +206,8 @@ final class StMarksSmarty extends Smarty {
 	}
 	
 	public function display($template = 'page.tpl', $cache_id = null, $compile_id = null, $parent = null) {
-		$this->assign('messages', $this->messages);
+		$this->assign('uiMessages', $this->messages);
+		$this->assign('uiStylesheets', $this->stylesheets);
 		parent::display($template, $cache_id, $compile_id, $parent);
 	}
 }
