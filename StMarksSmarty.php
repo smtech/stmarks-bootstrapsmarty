@@ -395,6 +395,32 @@ final class StMarksSmarty extends Smarty {
 		return parent::setCacheDir(self::appendUiDefaults($cache, $this->uiCacheDir, false));
 	}
 	
+	public function addTemplateDir($template, $key = null, $isConfig = false) {
+		if ($isConfig) {
+			return parent::addTemplateDir($template, $key, $isConfig);
+		} else {
+			if (!empty($key) && !empty($this->getTemplateDir($key))) {
+				return parent::addTemplateDir($template, $key);
+			} else {
+				if (!empty($key)) {
+					$template = array($key => $template);
+				}
+				return parent::setTemplateDir(self::appendUiDefaults($template, $this->getTemplateDir()));
+			}
+		}
+	}
+
+	public function addConfigDir($config, $key = null) {
+		if (!empty($key) && !empty($this->getConfigDir($key))) {
+			return parent::addConfigDir($template, $key);
+		} else {
+			if (!empty($key)) {
+				$config = array($key => $config);
+			}
+			return parent::setConfigDir($self::appendUiDefaults($config, $this->getConfigDir()));
+		}
+	}
+	
 	/**
 	 * Add additional CSS stylesheets
 	 *
@@ -535,10 +561,10 @@ final class StMarksSmarty extends Smarty {
 	 **/
 	public function display($template = 'page.tpl', $cache_id = null, $compile_id = null, $parent = null) {
 		global $metadata;
-		if (!empty($metadata)) {
-			$this->assign('metadata', $metadata);
-		} else {
+		if (empty($metadata)) {
 			$this->assign('metadata', $this->minimalMetadata);
+		} else {
+			$this->assign('metadata', array_replace($this->minimalMetadata, $metadata));
 		}
 		$this->assign('uiMessages', $this->messages);
 		$this->assign('uiStylesheets', $this->stylesheets);

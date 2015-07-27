@@ -1,9 +1,16 @@
-body, p, div {
+body, html {
 	font-family: Helvetica, sans-serif;
 	font-size: 11pt;
 	font-weight: normal;
 	margin: 0px;
 	padding: 0px;
+}
+
+#wrapper {
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	min-height: 100%;
 }
 
 #header {
@@ -89,9 +96,14 @@ body, p, div {
 }
 
 #content {
-	margin: 3em auto;
+	margin: 3em auto 0px auto;
 	width: 40em;
 	max-width: 90%;
+	padding: 0px 0px 5em 0px;
+}
+
+#content pre {
+	overflow: scroll;
 }
 
 address {
