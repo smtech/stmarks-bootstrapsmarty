@@ -285,8 +285,8 @@ final class StMarksSmarty extends Smarty {
 		$this->minimalMetadata['APP_NAME'] = 'St. Mark&rsquo;s School';
 		
 		/* Define base stylesheet */
-		$this->setFramed($isFramed);
-		if ($this->isFramed) {
+		$this->isFramed = $isFramed;
+		if ($this->isIframed) {
 			$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/iframed.css';
 		} else {
 			$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/stand-alone.css';
