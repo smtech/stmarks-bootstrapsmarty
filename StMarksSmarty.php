@@ -564,7 +564,7 @@ final class StMarksSmarty extends Smarty {
 		if (empty($metadata)) {
 			$this->assign('metadata', $this->minimalMetadata);
 		} else {
-			$this->assign('metadata', array_replace($this->minimalMetadata, $metadata));
+			$this->assign('metadata', array_replace($this->minimalMetadata, $metadata->getArrayCopy()));
 		}
 		$this->assign('uiMessages', $this->messages);
 		$this->assign('uiStylesheets', $this->stylesheets);
