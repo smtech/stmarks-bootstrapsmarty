@@ -1,7 +1,16 @@
+<?php
+
+require_once('../../../autoload.php');
+use smtech\StMarksColors as col;
+
+?>
+
 body, html {
 	font-family: Helvetica, sans-serif;
 	font-size: 11pt;
 	font-weight: normal;
+	background: <?= col::get(col::MAIN_BACKGROUND) ?>;
+	color: <?= col::get(col::MAIN_BACKGROUND)->text() ?>;
 	margin: 0px;
 	padding: 0px;
 }
@@ -41,14 +50,14 @@ body, html {
 }
 
 #navigation-menu a {
-	color: #fff;
+	color: <?= col::get(col::STMARKS_BLUE)->foreground() ?>;
 	padding: 1em;
 	text-decoration: none;
 }
 
 #navigation-menu a:hover {
-	background: #fff;
-	color: #003359;
+	background: <?= col::get(col::STMARKS_BLUE)->foreground() ?>;
+	color: <?= col::get(col::STMARKS_BLUE) ?>;
 	text-decoration: underline;
 }
 
@@ -116,8 +125,8 @@ address {
 	font-size: 8pt;
 	bottom: 0;
 	right: 0;
-	background: #eee;
-	color: #999;
+	background: <?= col::get(col::ALTERNATE_BACKGROUND) ?>;
+	color: <?= col::get(col::ALTERNATE_BACKGROUND)->text() ?>;
 	width: 100%;
 	padding: 1em;
 }

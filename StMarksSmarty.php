@@ -287,9 +287,9 @@ final class StMarksSmarty extends Smarty {
 		/* Define base stylesheet */
 		$this->setFramed($isFramed);
 		if ($this->isFramed) {
-			$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/iframed.css';
+			$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/iframed.css.php';
 		} else {
-			$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/stand-alone.css';
+			$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/stylesheets/stand-alone.css.php';
 		}
 	}
 	
