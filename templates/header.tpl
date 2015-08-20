@@ -1,6 +1,6 @@
 <header>
 	<nav class="navbar {if $isFramed}navbar-default{else}navbar-inverse{/if} navbar-fixed-top" id="header">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
