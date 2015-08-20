@@ -3,9 +3,9 @@
 	<li><a href="{$metadata['APP_URL']}">Home</a></li>
 	<li class="dropdown"><a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Options<span class="caret"></span></a>
 		<ul class="dropdown-menu">
-			<li>Option 1</li>
-			<li>Option 2</li>
-			<li>Option 3</li>
+			<li><a href="#">Option 1</a></li>
+			<li><a href="#">Option 2</a></li>
+			<li><a href="#">Option 3</a></li>
 		</ul>
 	</li>
 </ul>

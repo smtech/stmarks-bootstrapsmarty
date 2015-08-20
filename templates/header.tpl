@@ -1,5 +1,5 @@
 <header>
-	<nav class="navbar navbar-inverse navbar-fixed-top" id="header">
+	<nav class="navbar {if $isFramed}navbar-default{else}navbar-inverse{/if} navbar-fixed-top" id="header">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -12,7 +12,7 @@
 					<span class="sr-only">St. Mark&rsquo;s School<span>
 				</a>
 			</div>
-			<div class="navbar-collapse collapse">
+			<div id="navigation-menu" class="navbar-collapse collapse">
 				{include file="navigation-menu.tpl"}
 			</div>
 		</div>

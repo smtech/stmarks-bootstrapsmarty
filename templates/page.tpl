@@ -23,9 +23,9 @@
 			{if count($uiMessages) > 0}
 				<div id="messages" class="container">
 					{foreach $uiMessages as $message}
-						<div class="alert {$message->class|default:"alert-info"}">
-							<span class="title">{$message->title}</span><br />
-							<span class="content">{$message->content}</span>
+						<div class="alert alert-dismissable {$message->class|default:"alert-info"}">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<strong>{$message->title}</strong> {$message->content}
 						</div>
 					{/foreach}
 				</div>
@@ -43,5 +43,6 @@
 		<!-- JQuery and Bootstrap (loaded last to decrease page load time) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="{$metadata['APP_URL']}/vendor/smtech/stmarkssmarty/js/ie10-viewport-bug-workaround.js"></script>
 	</body>
 </html>
