@@ -1,31 +1,20 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>{$metadata['APP_NAME']}</title>
-	{foreach $uiStylesheets as $name => $stylesheet}
-		<link rel="stylesheet" href="{$stylesheet}" {if !empty($name) && !is_int($name)}name="{$name}"{/if} type="text/css" />
-	{/foreach}
-</head>
-
-<body>
-
-<header id="header">
-	<div id="header-logo"></div>
-	{include file="navigation-menu.tpl"}
+<header>
+	<nav class="navbar navbar-inverse navbar-fixed-top" id="header">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a id="header-logo" class="navbar-brand">
+					<span class="sr-only">St. Mark&rsquo;s School<span>
+				</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				{include file="navigation-menu.tpl"}
+			</div>
+		</div>
+	</nav>
 </header>
-
-{if count($uiMessages) > 0}
-<div id="messages">
-	<ul>
-		{foreach $uiMessages as $message}
-			<li>
-				<div class="message {$message->class|default:"message"}">
-					<span class="title">{$message->title}</span><br />
-					<span class="content">{$message->content}</span>
-				</div>
-			</li>
-		{/foreach}
-	</ul>
-</div>
-{/if}

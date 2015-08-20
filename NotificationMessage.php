@@ -9,13 +9,16 @@
 class NotificationMessage {
 
 	/** Default CSS class selector for message */
-	const MESSAGE = 'message';
+	const MESSAGE = 'alert-info';
 	
 	/** CSS class selector for an error message */
-	const ERROR = 'error';
+	const ERROR = 'alert-danger';
 	
 	/** CSS class selector for a "good" (indiciating successful operation) message */
-	const GOOD = 'good';
+	const GOOD = 'alert-success';
+	
+	/** CSS class selector for an important message */
+	const WARNING = 'alert-warning';
 	
 	/** @var string $title HTML-formatted title of the message */
 	public $title = null;

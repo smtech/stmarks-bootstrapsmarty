@@ -1,161 +1,26 @@
 <?php
 
-require_once('../../../autoload.php');
-use smtech\StMarksColors as col;
+require_once(__DIR__ . '/../../../autoload.php');
+use smtech\StMarksColors;
 
 ?>
 
-body, html {
-	font-family: Helvetica, sans-serif;
-	font-size: 11pt;
-	font-weight: normal;
-	background: <?= col::get(col::MAIN_BACKGROUND) ?>;
-	color: <?= col::get(col::MAIN_BACKGROUND)->text() ?>;
-	margin: 0px;
-	padding: 0px;
-}
-
-#wrapper {
-	position: relative;
-	margin: 0px;
-	padding: 0px;
-	min-height: 100%;
+body {
+	padding-top: 70px;
 }
 
 #header {
-	width: 100%;
+	height: 70px;
 	background: url('../images/stand-alone/header.jpg') repeat-x left center;
-	height: 72px;
-	position: relative;
 }
 
-#header #header-logo {
+#header-logo {
 	background: url('../images/stand-alone/logo.png') no-repeat;
 	background-position: 0px 0px;
 	height: 70px;
+	width: 250px;
 }
 
-#navigation-menu {
-	position: absolute;
-	left: 210px;
-	bottom: 1em;
-	list-style-type: none;
-	margin: auto;
-	padding: 0px;
-}
-
-#navigation-menu li {
-	float: left;
-	margin-right: 1em;
-}
-
-#navigation-menu a {
-	color: <?= col::get(col::STMARKS_BLUE)->foreground() ?>;
-	padding: 1em;
-	text-decoration: none;
-}
-
-#navigation-menu a:hover {
-	background: <?= col::get(col::STMARKS_BLUE)->foreground() ?>;
-	color: <?= col::get(col::STMARKS_BLUE) ?>;
-	text-decoration: underline;
-}
-
-#messages {
-	overflow: hidden;
-	margin: 1em;
-	padding: 0;
-}
-
-#messages ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-#messages li {
-	overflow: hidden;
-}
-
-#messages .message {
-	float: left;
-	margin: 0.5em;
-	padding: 0.5em;
-	font-size: smaller;
-	background: #feb;
-	color: #a80;
-	border: solid 1px #a80;
-	border-radius: 0.5em;
-}
-
-#messages .message.good {
-	background:#cfd;
-	color: #465;
-	border-color: #465;
-}
-
-#messages .message.error {
-	background: #fee;
-	color: #a00;
-	border-color: #a00;
-}
-
-#messages .title {
-	font-weight: bold;
-}
-
-#content {
-	margin: 3em auto 0px auto;
-	width: 40em;
-	max-width: 90%;
-	padding: 0px 0px 5em 0px;
-}
-
-#content pre {
-	overflow: scroll;
-}
-
-address {
-	font-style: normal;
-}
-
-#footer {
-	position: absolute;
-	text-align: right;
-	font-size: 8pt;
-	bottom: 0;
-	right: 0;
-	background: <?= col::get(col::ALTERNATE_BACKGROUND) ?>;
-	color: <?= col::get(col::ALTERNATE_BACKGROUND)->text() ?>;
-	width: 100%;
-	padding: 1em;
-}
-
-/* Forms formatting */
-label, input[type=file] {
-	display: block;
-	margin-top: 10px;
-}
-
-label .comment {
-	font-size: 8pt;
-	display: block;
-}
-
-input {
-	display: block;
-}
-
-input[type=file] {
-	width: 100%;
-	font-size: 8pt;
-	font-style: italic;
-}
-
-input[type=text] {
-	width: 100%;
-}
-
-input[type=radio], input[type=checkbox] {
-	display: inline;
+h1, h2, h3, h4, h5, h6 {
+	color: <?= StMarksColors::STMARKS_BLUE ?>;
 }
