@@ -557,7 +557,7 @@ final class StMarksSmarty extends Smarty {
 	 * @see http://www.smarty.net/docs/en/api.display.tpl Smarty::display()
 	 **/
 	public function display($template = 'page.tpl', $cache_id = null, $compile_id = null, $parent = null) {
-		global $metadata;
+		global $metadata; // FIXME grown-ups don't program like this
 		if (empty($metadata)) {
 			$this->assign('metadata', $this->minimalMetadata);
 		} else {

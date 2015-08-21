@@ -12,7 +12,7 @@
 					<span class="sr-only">St. Mark&rsquo;s School<span>
 				</a>
 			</div>
-			<div id="navigation-menu" class="navbar-collapse collapse">
+			<div id="navigation-menu" class="collapse navbar-collapse">
 				{include file="navigation-menu.tpl"}
 			</div>
 		</div>

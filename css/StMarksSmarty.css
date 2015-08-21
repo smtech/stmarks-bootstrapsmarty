@@ -64,3 +64,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	color: <?= sm::get(sm::STMARKS_BLUE) ?>;
 }
+
+.container {
+	margin-bottom: 10px;
+}
+
+.container-readable-width {
+	max-width: 680px;
+}
+
+.container-centered {
+	margin-left: auto;
+	margin-right: auto;
+}
