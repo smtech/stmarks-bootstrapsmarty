@@ -9,13 +9,22 @@
 class NotificationMessage {
 
 	/** Default CSS class selector for message */
-	const MESSAGE = 'alert-info';
+	const INFO = 'alert-info';
+	
+	/** Alias for INFO */
+	const MESSAGE = INFO;
 	
 	/** CSS class selector for an error message */
-	const ERROR = 'alert-danger';
+	const DANGER = 'alert-danger';
+	
+	/** Alias for DANGER */
+	const ERROR = self::DANGER;
 	
 	/** CSS class selector for a "good" (indiciating successful operation) message */
-	const GOOD = 'alert-success';
+	const SUCCESS = 'alert-success';
+	
+	/** Alias for SUCCESS */
+	const GOOD = self::GOOD;
 	
 	/** CSS class selector for an important message */
 	const WARNING = 'alert-warning';
