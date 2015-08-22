@@ -288,6 +288,8 @@ final class StMarksSmarty extends Smarty {
 		$this->setFramed($isFramed);
 		$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/css/StMarksSmarty.css?isFramed=' . ($isFramed ? 1 : 0);
 		$this->assign('isFramed', ($isFramed ? 1 : 0));
+		$this->assign('name', ucwords(preg_replace('/[\-_]+/', basename($_SERVER['REQUEST_URI'], '.php'))));
+		$this->assign('category', ucwords(preg_replace('/[\-_]+/', basename(dirname($_SERVER['REQUEST_URI'])))));
 	}
 	
 	/**
