@@ -290,6 +290,7 @@ final class StMarksSmarty extends Smarty {
 		$this->assign('isFramed', ($isFramed ? 1 : 0));
 		$this->assign('name', ucwords(preg_replace('/[\-_]+/', ' ', basename($_SERVER['REQUEST_URI'], '.php'))));
 		$this->assign('category', ucwords(preg_replace('/[\-_]+/', ' ', basename(dirname($_SERVER['REQUEST_URI'])))));
+		$this->assign('navbarActive', false);
 	}
 	
 	/**
@@ -539,7 +540,7 @@ final class StMarksSmarty extends Smarty {
 	 * @param string $class (Optional) CSS class name of the message ("message is
 	 *		default value, "error" and "good" are also styled by default)
 	 **/
-	public function addMessage($title, $content, $class = 'message') {
+	public function addMessage($title, $content, $class = NotificationMessage::INFO) {
 		$this->messages[] = new NotificationMessage($title, $content, $class);
 	}
 

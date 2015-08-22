@@ -10,21 +10,33 @@ class NotificationMessage {
 
 	/** Default CSS class selector for message */
 	const INFO = 'alert-info';
-	
-	/** Alias for INFO */
-	const MESSAGE = INFO;
+		
+	/**
+	 * Alias for INFO
+	 *
+	 * @deprecated Use `INFO` instead for consistency with Bootstrap
+	 **/
+	const MESSAGE = 'alert-info';
 	
 	/** CSS class selector for an error message */
 	const DANGER = 'alert-danger';
 	
-	/** Alias for DANGER */
-	const ERROR = self::DANGER;
+	/**
+	 * Alias for DANGER
+	 *
+	 * @deprecated Use `DANGER` instead for consistency with Bootstrap
+	 **/
+	const ERROR = 'alert-danger';
 	
 	/** CSS class selector for a "good" (indiciating successful operation) message */
 	const SUCCESS = 'alert-success';
 	
-	/** Alias for SUCCESS */
-	const GOOD = self::GOOD;
+	/**
+	 * Alias for SUCCESS
+	 *
+	 * @deprecated Use `SUCCESS` instead for consistency with Bootstrap
+	 **/
+	const GOOD = 'alert-success';
 	
 	/** CSS class selector for an important message */
 	const WARNING = 'alert-warning';
@@ -47,7 +59,7 @@ class NotificationMessage {
 	 *
 	 * @return void
 	 **/
-	public function __construct($title, $content, $class = self::MESSAGE) {
+	public function __construct($title, $content, $class = self::INFO) {
 		$this->title = $title;
 		$this->content = $content;
 		$this->class = $class;
