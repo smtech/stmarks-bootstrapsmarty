@@ -6,6 +6,11 @@
         "smarty/smarty": "3.1.*",
         "smtech/stmarks-colors": "dev-master"
     },
+    "suggest": {
+	    "eternicode/bootstrap-datepicker": "The full Bootstrap Datepicker package for local install",
+	    "battis/appmetadata": "MySQL-backed globals array for app metadata storage"
+	    
+    },
     "authors": [
         {
             "name": "Seth Battis",

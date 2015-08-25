@@ -35,5 +35,14 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="{$metadata['APP_URL']}/vendor/smtech/stmarkssmarty/js/ie10-viewport-bug-workaround.js"></script>
 		<script src="{$metadata['APP_URL']}/vendor/smtech/stmarkssmarty/js/button-spinner.js"></script>
+		{if !empty($uiStylesheets['eternicode/bootstrap-datepicker'])}
+			<script src="{$metadata['APP_URL']}/vendor/smtech/stmarkssmarty/js/bootstrap-datepicker.min.js"></script>
+			<script>
+				$('.input-group.date').datepicker({
+				    autoclose: true,
+				    todayHighlight: true
+				});
+			</script>
+		{/if}
 	</body>
 </html>

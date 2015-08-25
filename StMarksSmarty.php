@@ -27,6 +27,10 @@ final class StMarksSmarty extends Smarty {
 	 * config directories
 	 **/
 	const UI_KEY = 'StMarksSmarty';
+	
+	
+	/** Module name for eternicode/bootstrap-datepicker */
+	const MODULE_DATEPICKER = 'eternicode/bootstrap-datepicker';
 
 
 	/**
@@ -521,10 +525,8 @@ final class StMarksSmarty extends Smarty {
 			return $this->stylesheets;
 		} else {
 			$result = array();
-			foreach($this-stylesheets as $name => $value) {
-				if ($name == $key) {
-					$result[$key] = $value;
-				} elseif (preg_match("/$key-\d+/", $name)) {
+			foreach($this->stylesheets as $name => $value) {
+				if (preg_match("/$key-?\d*/", $name)) {
 					$result[$name] = $value;
 				}
 			}
@@ -542,6 +544,27 @@ final class StMarksSmarty extends Smarty {
 	 **/
 	public function addMessage($title, $content, $class = NotificationMessage::INFO) {
 		$this->messages[] = new NotificationMessage($title, $content, $class);
+	}
+	
+	/**
+	 * Add datepicker functionality
+	 * 
+	 * @param string $moduleName
+	 *
+	 * @return boolean `TRUE` on success, `FALSE` on failure
+	 *
+	 * @see https://github.com/eternicode/bootstrap-datepicker eternicode/bootstrap-datepicker
+	 **/
+	public function enable($moduleName) {
+		switch ($moduleName) {
+			case self::MODULE_DATEPICKER:
+				$this->addStylesheet(dirname($this->getStylesheet(self::UI_KEY)[self::UI_KEY]) . '/bootstrap-datepicker.min.css', self::MODULE_DATEPICKER);
+				// TODO probably should really have a JavaScript list like the Stylesheet list...
+				return true;
+			
+			default:
+				return false;
+		}
 	}
 
 	/**
