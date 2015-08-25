@@ -1,3 +1,4 @@
+{assign var="isFramed" value=$isFramed|default: false}
 {if !$isFramed}
 <footer class="footer">
 	<div class="container">

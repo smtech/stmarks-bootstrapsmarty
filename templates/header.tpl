@@ -1,3 +1,4 @@
+{assign var="isFramed" value=$isFramed|default: false}
 <header>
 	<nav class="navbar {if $isFramed}navbar-default{else}navbar-inverse{/if} navbar-fixed-top" id="header">
 		<div class="container-fluid">

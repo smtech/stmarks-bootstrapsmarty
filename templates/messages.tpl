@@ -1,5 +1,6 @@
+{assign var="uiMessages" value=$uiMessages|default: null}
 {block name="ui-messages"}
-	{if count($uiMessages) > 0}
+	{if !empty($uiMessages)}
 		<div id="messages" class="container">
 			{foreach $uiMessages as $message}
 				<div class="alert alert-dismissable {$message->class|default:"alert-info"}">
