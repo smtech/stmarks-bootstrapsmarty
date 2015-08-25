@@ -2,6 +2,8 @@
 
 /** StMarksSmarty and related classes */
 
+use Battis\DataUtilities;
+
 /**
  * A wrapper for Smarty to set (and maintain) defaults
  *
@@ -291,9 +293,11 @@ final class StMarksSmarty extends Smarty {
 		/* Define base stylesheet */
 		$this->setFramed($isFramed);
 		$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/css/StMarksSmarty.css?isFramed=' . ($isFramed ? 1 : 0);
+		
+		/* set some reasonable defaults */
 		$this->assign('isFramed', ($isFramed ? 1 : 0));
-		$this->assign('name', ucwords(preg_replace('/[\-_]+/', ' ', basename($_SERVER['REQUEST_URI'], '.php'))));
-		$this->assign('category', ucwords(preg_replace('/[\-_]+/', ' ', basename(dirname($_SERVER['REQUEST_URI'])))));
+		$this->assign('name', DataUtilities::titleCase(preg_replace('/[\-_]+/', ' ', basename($_SERVER['REQUEST_URI'], '.php'))));
+		$this->assign('category', DataUtilities::titleCase(preg_replace('/[\-_]+/', ' ', basename(dirname($_SERVER['REQUEST_URI'])))));
 		$this->assign('navbarActive', false);
 	}
 	
