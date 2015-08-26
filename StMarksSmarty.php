@@ -292,10 +292,9 @@ final class StMarksSmarty extends Smarty {
 		
 		/* Define base stylesheet */
 		$this->setFramed($isFramed);
-		$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/css/StMarksSmarty.css?isFramed=' . ($isFramed ? 1 : 0);
+		$this->stylesheets[self::UI_KEY] = $this->minimalMetadata['APP_URL'] . '/vendor/smtech/stmarkssmarty/css/StMarksSmarty.css';
 		
 		/* set some reasonable defaults */
-		$this->assign('isFramed', ($isFramed ? 1 : 0));
 		$this->assign('name', DataUtilities::titleCase(preg_replace('/[\-_]+/', ' ', basename($_SERVER['REQUEST_URI'], '.php'))));
 		$this->assign('category', DataUtilities::titleCase(preg_replace('/[\-_]+/', ' ', basename(dirname($_SERVER['REQUEST_URI'])))));
 		$this->assign('navbarActive', false);
@@ -499,7 +498,7 @@ final class StMarksSmarty extends Smarty {
 	 * @return void
 	 **/
 	public function setFramed($isFramed) {
-		$this->isFramed = ($isFramed == true);
+		$this->isFramed = (bool) $isFramed;
 	}
 	
 	/**
@@ -508,7 +507,7 @@ final class StMarksSmarty extends Smarty {
 	 * @return boolean
 	 **/
 	public function isFramed() {
-		return $this->isFramed();
+		return $this->isFramed;
 	}
 	
 	/**
@@ -595,6 +594,7 @@ final class StMarksSmarty extends Smarty {
 		}
 		$this->assign('uiMessages', $this->messages);
 		$this->assign('uiStylesheets', $this->stylesheets);
+		$this->assign('isFramed', $this->isFramed());
 		parent::display($template, $cache_id, $compile_id, $parent);
 	}
 }

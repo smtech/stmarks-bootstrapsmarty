@@ -7,7 +7,7 @@ use smtech\StMarksColors as sm;
 header("Content-Type: text/css");
 header("X-Content-Type-Options: nosniff"); /* trying to settle IE's hash */
 
-$isFramed = (empty($_REQUEST['isFramed']) ? false : true);
+$isFramed = (empty($_REQUEST['isFramed']) ? false : $_REQUEST['isFramed'] == 'true');
 
 if ($isFramed) {
 	$headerHeight = '50px';
@@ -25,9 +25,8 @@ html {
 }
 
 body {
-	margin-top: <?= $headerHeight ?>;
-	padding: 1em 0px;
-	margin-bottom: <?= $footerHeight ?>;
+	padding-top: <?= $headerHeight ?>;
+	padding-bottom: <?= $footerHeight ?>;
 }
 
 .navbar-fixed-top {
@@ -57,7 +56,7 @@ body {
 }
 
 .footer .text-muted {
-	margin: 10px auto;
+	margin: 10px auto 0px auto;
 	width: 680px;
 }
 

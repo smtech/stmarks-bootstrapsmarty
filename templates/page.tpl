@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 				
 		{foreach $uiStylesheets as $name => $stylesheet}
-			<link rel="stylesheet" href="{$stylesheet}" {if !empty($name) && !is_int($name)}name="{$name}"{/if} type="text/css" />
+			<link rel="stylesheet" href="{$stylesheet}{if $name == 'StMarksSmarty'}?isFramed={if $isFramed}true{else}false{/if}{/if}" {if !empty($name) && !is_int($name)}name="{$name}"{/if} type="text/css" />
 		{/foreach}
 	</head>
 	<body>
@@ -39,6 +39,7 @@
 			<script src="{$metadata['APP_URL']}/vendor/smtech/stmarkssmarty/js/bootstrap-datepicker.min.js"></script>
 			<script>
 				$('.input-group.date').datepicker({
+					orientation: 'top auto',
 				    autoclose: true,
 				    todayHighlight: true
 				});
