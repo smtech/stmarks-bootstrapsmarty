@@ -1,9 +1,11 @@
+{assign var="formAction" value=$formAction|default: $smarty.server.PHP_SELF}
+{assign var="formMethod" value=$formMethod|default: 'post'}
 {assign var="formFileUpload" value=$formFileUpload|default: false}
 {assign var="formHidden" value=$formHidden|default: false}
 {assign var="formLabelWidth" value=$formLabelWidth|default:2}
 
 <div class="container">
-	<form action="{$formAction|default: $smarty.server.PHP_SELF}" method="post" {if $formFileUpload}enctype="multipart/form-data"{/if} class="form-horizontal" role="form">
+	<form action="{$formAction}" method="{$formMethod}" {if $formFileUpload}enctype="multipart/form-data"{/if} class="form-horizontal" role="form">
 
 		{if !empty($formHidden)}
 			{foreach $formHidden as $formHiddenName => $formHiddenValue}
