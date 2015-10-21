@@ -51,6 +51,30 @@ class NotificationMessage {
 	public $class = self::MESSAGE;
 	
 	/**
+	 * Add Bootstrap Alert-link styling to links in the notification
+	 *
+	 * One annoying side-effect is that the HTML content will be re-wrapped in
+	 * another `<div>` tag, just to ensure that `SimpleXML` can parse it.
+	 *
+	 * @param string $html The HTML content to be modified
+	 *
+	 * @return string All links in `$html` will be updated to include the `alert-link` selector class
+	 **/
+	private static function styleAlertLinks($html) {
+		$xml = simplexml_load_string("<div>$html</div>");
+		$anchors = $xml->xpath('//a');
+		for($i = 0; $i < count($anchors); $i++) {
+			if (isset($anchors[$i]->attributes()->class)) {
+				/* this is dumb, but it appears that the concatenate-assignment operator (`.=`) doesn't work here */
+				$anchors[$i]->attributes()->class = $anchors[$i]->attributes()->class . ' alert-link';
+			} else {
+				$anchors[$i]->addAttribute('class', 'alert-link');
+			}
+		}
+		return $xml->asXml();
+	}
+	
+	/**
 	 * Construct a new notification message
 	 *
 	 * @param string $title
@@ -60,8 +84,8 @@ class NotificationMessage {
 	 * @return void
 	 **/
 	public function __construct($title, $content, $class = self::INFO) {
-		$this->title = $title;
-		$this->content = $content;
+		$this->title = NotificationMessage::styleAlertLinks($title);
+		$this->content = NotificationMessage::styleAlertLinks($content);
 		$this->class = $class;
 	}
 }
