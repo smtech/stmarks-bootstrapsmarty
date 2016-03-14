@@ -13,13 +13,30 @@ use \Battis\BootstrapSmarty\BootstrapSmarty;
  **/
 class StMarksSmarty extends BootstrapSmarty {
 	
+	const KEY = 'StMarkSmarty';
+	
 	private $isFramed = false;
 	
+	public static function getSmarty($template = null, $config = null, $compile = null, $cache = null) {
+		if (self::$singleton === null) {
+			self::$singleton = new self($template, $config, $compile, $cache);
+		}
+		return self::$singleton;
+	}
+
 	public function __construct($template = null, $config = null, $compile = null, $cache = null) {
 		parent::__construct($template, $config, $compile, $cache);
 		
-		$this->addTemplateDir(__DIR__ . '/../templates');
-		$this->addStylesheet(__DIR__ . '/../css/StMarksSmarty.css');
+		$this->addTemplateDir(__DIR__ . '/../templates', self::KEY);
+		$this->addStylesheet(
+			(
+				!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ?
+					'http://' :
+					'https://'
+			) .
+			$_SERVER['SERVER_NAME'] . preg_replace("|^{$_SERVER['DOCUMENT_ROOT']}(.*)/src$|", '$1/css/StMarksSmarty.css', __DIR__),
+			self::KEY
+		);
 	}
 	
 	public function setFramed($isFramed) {
@@ -48,11 +65,11 @@ class StMarksSmarty extends BootstrapSmarty {
 		}
 		
 		if ($this->isFramed()) {
-			$this->addStylesheet(__DIR__ . '/../css/framed.css');
+			$this->addStylesheet(__DIR__ . '/../css/framed.css', self::KEY);
 		}
 		$this->assign('isFramed', $this->isFramed());
 		
-		parent::display_debug($template, $cache_id, $compile_id, $parent);
+		parent::display($template, $cache_id, $compile_id, $parent);
 	}
 }
 
