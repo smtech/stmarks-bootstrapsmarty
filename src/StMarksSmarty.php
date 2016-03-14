@@ -9,7 +9,7 @@ namespace smtech\StMarksSmarty;
  *
  * @author Seth Battis <SethBattis@stmarksschool.org>
  **/
-final class StMarksSmarty extends \Battis\BootstrapSmarty\BootstrapSmarty {
+class StMarksSmarty extends \Battis\BootstrapSmarty\BootstrapSmarty {
 	
 	private $isFramed = false;
 	
