@@ -1,13 +1,19 @@
 <?php
 
-require_once 'common.inc.php';
+require_once(__DIR__ . '/../../../autoload.php');
 
 use smtech\StMarksColors as sm;
 
 header("Content-Type: text/css");
 header("X-Content-Type-Options: nosniff"); /* trying to settle IE's hash */
 
-$headerHeight = '70px';
+$isFramed = (empty($_REQUEST['isFramed']) ? false : $_REQUEST['isFramed'] == 'true');
+
+if ($isFramed) {
+	$headerHeight = '50px';
+} else {
+	$headerHeight = '70px';
+}
 $footerHeight = '40px';
 
 
@@ -25,9 +31,10 @@ body {
 
 .navbar-fixed-top {
 	height: <?= $headerHeight ?>;
-	background: url('../images/stand-alone/header.jpg') repeat-x left center;
+	<?php if (!$isFramed): ?>background: url('../images/stand-alone/header.jpg') repeat-x left center;<?php endif; ?>
 }
 
+<?php if (!$isFramed): ?>
 .navbar-brand {
 	background: url('../images/stand-alone/logo.png') no-repeat;
 	background-position: 0px 0px;
@@ -38,6 +45,7 @@ body {
 #navigation-menu .nav {
 	margin-top: 20px;
 }
+<?php endif; ?>
 
 .footer {
   position: absolute;

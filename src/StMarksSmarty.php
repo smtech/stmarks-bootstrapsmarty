@@ -65,7 +65,15 @@ class StMarksSmarty extends BootstrapSmarty {
 		}
 		
 		if ($this->isFramed()) {
-			$this->addStylesheet(__DIR__ . '/../css/framed.css', self::KEY);
+			$this->addStylesheet(
+				(
+					!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ?
+						'http://' :
+						'https://'
+				) .
+				$_SERVER['SERVER_NAME'] . preg_replace("|^{$_SERVER['DOCUMENT_ROOT']}(.*)/src$|", '$1/css/StMarksSmarty.css?isFramed=true', __DIR__),
+				self::KEY
+			);
 		}
 		$this->assign('isFramed', $this->isFramed());
 		
