@@ -4,12 +4,14 @@
 
 namespace smtech\StMarksSmarty;
 
+use \Battis\BootstrapSmarty\BootstrapSmarty;
+
 /**
  * A wrapper for Smarty to set (and maintain) defaults
  *
  * @author Seth Battis <SethBattis@stmarksschool.org>
  **/
-class StMarksSmarty extends \Battis\BootstrapSmarty\BootstrapSmarty {
+class StMarksSmarty extends BootstrapSmarty {
 	
 	private $isFramed = false;
 	
