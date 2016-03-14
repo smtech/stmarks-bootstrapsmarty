@@ -4,11 +4,9 @@
     "license": "LGPL-3.0",
     "require": {
         "battis/bootstrapsmarty": "dev-develop",
-        "smtech/stmarks-colors": "dev-master",
-        "battis/data-utilities": "dev-master"
+        "smtech/stmarks-colors": "dev-master"
     },
     "suggest": {
-	    "eternicode/bootstrap-datepicker": "The full Bootstrap Datepicker package for local install",
 	    "battis/appmetadata": "MySQL-backed globals array for app metadata storage"
 	    
     },
@@ -19,6 +17,8 @@
         }
     ],
     "autoload": {
-	    "classmap": [""]
+	    "psr-4": {
+		    "smtech\\StmarksSmarty\\" : "src"
+	    }
     }
 }
