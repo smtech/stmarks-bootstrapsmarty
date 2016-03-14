@@ -11,17 +11,13 @@ namespace smtech\StMarksSmarty;
  **/
 final class StMarksSmarty extends \Battis\BootstrapSmarty\BootstrapSmarty {
 	
-	private $isFramed;
+	private $isFramed = false;
 	
-	public function getSmarty($isFramed = false, $template = null, $config = null, $compile = null, $cache = null) {
-		$result = $parent::getSmarty($template, $config, $compile, $cache);
-		
-		$this->setFramed($isFramed);
+	public function __construct($template = null, $config = null, $compile = null, $cache = null) {
+		parent::__construct($template, $config, $compile, $cache);
 		
 		$this->addTemplateDir(__DIR__ . '/../templates');
 		$this->addStylesheet(__DIR__ . '/../css/StMarksSmarty.css');
-		
-		return $result;
 	}
 	
 	public function setFramed($isFramed) {
@@ -63,7 +59,7 @@ final class StMarksSmarty extends \Battis\BootstrapSmarty\BootstrapSmarty {
  *
  * @author Seth Battis <SethBattis@stmarksschool.org>
  **/
-class StMarksSmarty_Exception extends \Battis\BootstrapSmarty\BootStrapSmartyException {
+class StMarksSmarty_Exception extends \Battis\BootstrapSmarty\BootstrapSmarty_Exception {
 }
 	
 ?>
