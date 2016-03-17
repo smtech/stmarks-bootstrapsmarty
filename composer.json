@@ -3,7 +3,7 @@
     "description": "A standard Smarty install for St. Mark's projects",
     "license": "LGPL-3.0",
     "require": {
-        "battis/bootstrapsmarty": "dev-develop",
+        "battis/bootstrapsmarty": "^1.1",
         "smtech/stmarks-colors": "dev-master"
     },
     "suggest": {
