@@ -4,20 +4,94 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d8d773f919737f5de659ab628092fe99",
+    "hash": "a0f8142310e72bf8bb8c6970abb94157",
+    "content-hash": "fbd88feb909dbbd3c45a15e6e0b5a64f",
     "packages": [
         {
-            "name": "smarty/smarty",
-            "version": "v3.1.27",
+            "name": "battis/bootstrapsmarty",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2"
+                "url": "https://github.com/battis/bootstrapsmarty.git",
+                "reference": "ffa31df71a65f597261c4d8cd4e5e56f4c8eb080"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2",
-                "reference": "4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2",
+                "url": "https://api.github.com/repos/battis/bootstrapsmarty/zipball/ffa31df71a65f597261c4d8cd4e5e56f4c8eb080",
+                "reference": "ffa31df71a65f597261c4d8cd4e5e56f4c8eb080",
+                "shasum": ""
+            },
+            "require": {
+                "battis/data-utilities": "dev-master",
+                "smarty/smarty": "3.1.*"
+            },
+            "suggest": {
+                "eternicode/bootstrap-datepicker": "The full Bootstrap Datepicker package for local install"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Battis\\BootstrapSmarty\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Seth Battis",
+                    "email": "seth@battis.net"
+                }
+            ],
+            "description": "A wrapper for Smarty to set (and maintain) defaults within a Bootstrap UI environment",
+            "time": "2016-03-17 15:18:32"
+        },
+        {
+            "name": "battis/data-utilities",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/battis/data-utilities.git",
+                "reference": "6b98088af200389f394e40e5667987d4b8751d98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/battis/data-utilities/zipball/6b98088af200389f394e40e5667987d4b8751d98",
+                "reference": "6b98088af200389f394e40e5667987d4b8751d98",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Battis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Seth Battis",
+                    "email": "sethbattis@stmarksschool.org"
+                }
+            ],
+            "description": "A handful of useful helper functions to process data",
+            "time": "2016-03-16 14:17:11"
+        },
+        {
+            "name": "smarty/smarty",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smarty-php/smarty.git",
+                "reference": "ff6a8521bb588187eefa2695c3959fe101d22c18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/ff6a8521bb588187eefa2695c3959fe101d22c18",
+                "reference": "ff6a8521bb588187eefa2695c3959fe101d22c18",
                 "shasum": ""
             },
             "require": {
@@ -59,13 +133,49 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-18 00:55:59"
+            "time": "2016-03-11 02:36:43"
+        },
+        {
+            "name": "smtech/stmarks-colors",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smtech/stmarks-colors.git",
+                "reference": "4e36a4f9e76c00d894487dac18a9d85ebcc54c39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smtech/stmarks-colors/zipball/4e36a4f9e76c00d894487dac18a9d85ebcc54c39",
+                "reference": "4e36a4f9e76c00d894487dac18a9d85ebcc54c39",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "smtech\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Seth Battis",
+                    "email": "sethbattis@stmarksschool.org"
+                }
+            ],
+            "description": "An object-ified, consistent set of hex colors for St. Mark’s projects",
+            "time": "2016-03-17 15:26:18"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "battis/bootstrapsmarty": 20,
+        "smtech/stmarks-colors": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

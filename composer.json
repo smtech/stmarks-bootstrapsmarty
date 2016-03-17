@@ -16,7 +16,8 @@
             "email": "sethbattis@stmarksschool.org"
         }
     ],
-    "autoload": {
+    "minimum-stability": "dev",
+	"autoload": {
 	    "psr-4": {
 		    "smtech\\StMarksSmarty\\" : "src/"
 	    }
