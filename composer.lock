@@ -4,30 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "721c564140bc0636babf18954e3e495e",
-    "content-hash": "e8cc81c2a494fa8357f116e27867d715",
+    "hash": "a122641dd694a4b966aff8ffb2f37fe7",
+    "content-hash": "0ea1e8fdaf1b4d7aeee5b893a873fada",
     "packages": [
         {
             "name": "battis/bootstrapsmarty",
-            "version": "v1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/battis/bootstrapsmarty.git",
-                "reference": "4f5d8088c0950588dcea68247c9996da3776af67"
+                "reference": "097ff9d3931aedbc38677d207b5c4540b4de812c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/battis/bootstrapsmarty/zipball/4f5d8088c0950588dcea68247c9996da3776af67",
-                "reference": "4f5d8088c0950588dcea68247c9996da3776af67",
+                "url": "https://api.github.com/repos/battis/bootstrapsmarty/zipball/097ff9d3931aedbc38677d207b5c4540b4de812c",
+                "reference": "097ff9d3931aedbc38677d207b5c4540b4de812c",
                 "shasum": ""
             },
             "require": {
                 "battis/data-utilities": "dev-master",
+                "bower-asset/bootstrap-colorpicker": "dev-master",
                 "bower-asset/bootstrap-datepicker": "dev-master",
                 "bower-asset/bootstrap-sortable": "dev-master",
-                "bower-asset/xaguilars-bootstrap-colorpicker": "dev-master",
                 "fxp/composer-asset-plugin": "^1.1",
                 "smarty/smarty": "3.1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
             },
             "type": "library",
             "autoload": {
@@ -46,7 +49,7 @@
                 }
             ],
             "description": "A wrapper for Smarty to set (and maintain) defaults within a Bootstrap UI environment",
-            "time": "2016-03-17 19:04:07"
+            "time": "2016-04-14 02:09:19"
         },
         {
             "name": "battis/data-utilities",
@@ -54,13 +57,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/battis/data-utilities.git",
-                "reference": "6b98088af200389f394e40e5667987d4b8751d98"
+                "reference": "9efc9d29ad23d8a3a4d0803408eefbc7f681b012"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/battis/data-utilities/zipball/6b98088af200389f394e40e5667987d4b8751d98",
-                "reference": "6b98088af200389f394e40e5667987d4b8751d98",
+                "url": "https://api.github.com/repos/battis/data-utilities/zipball/9efc9d29ad23d8a3a4d0803408eefbc7f681b012",
+                "reference": "9efc9d29ad23d8a3a4d0803408eefbc7f681b012",
                 "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
             },
             "type": "library",
             "autoload": {
@@ -79,24 +85,24 @@
                 }
             ],
             "description": "A handful of useful helper functions to process data",
-            "time": "2016-03-16 14:17:11"
+            "time": "2016-07-12 14:40:23"
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
+                "reference": "edefe0e77a39149f971c4215301f7f8a7f15f210"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/edefe0e77a39149f971c4215301f7f8a7f15f210",
+                "reference": "edefe0e77a39149f971c4215301f7f8a7f15f210",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.1"
+                "bower-asset/jquery": ">=1.9.1,<4.0"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -131,27 +137,63 @@
             ]
         },
         {
+            "name": "bower-asset/bootstrap-colorpicker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mjolnic/bootstrap-colorpicker.git",
+                "reference": "7847a84ab7ec3b17474fb16b7e68fc02838efe52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mjolnic/bootstrap-colorpicker/zipball/7847a84ab7ec3b17474fb16b7e68fc02838efe52",
+                "reference": "7847a84ab7ec3b17474fb16b7e68fc02838efe52",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=2",
+                "bower-asset/jquery": ">=1.10"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/css/bootstrap-colorpicker.css",
+                    "dist/js/bootstrap-colorpicker.js"
+                ],
+                "bower-asset-ignore": [
+                    "\\.*",
+                    "/index.html",
+                    "/package.json",
+                    "/composer.json",
+                    "/Gruntfile.js",
+                    "/.travis.yml",
+                    "/travis.sh",
+                    "/server.js"
+                ]
+            }
+        },
+        {
             "name": "bower-asset/bootstrap-datepicker",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eternicode/bootstrap-datepicker.git",
-                "reference": "67a348a3bc51b34b1500186bc3a6ec0b18b54b47"
+                "reference": "3bde2d87a291fcc1808a86dc9317eba9d361b7a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eternicode/bootstrap-datepicker/zipball/67a348a3bc51b34b1500186bc3a6ec0b18b54b47",
-                "reference": "67a348a3bc51b34b1500186bc3a6ec0b18b54b47",
+                "url": "https://api.github.com/repos/eternicode/bootstrap-datepicker/zipball/3bde2d87a291fcc1808a86dc9317eba9d361b7a0",
+                "reference": "3bde2d87a291fcc1808a86dc9317eba9d361b7a0",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.7.1"
+                "bower-asset/jquery": ">=1.7.1,<3.0.0"
             },
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": [
                     "dist/css/bootstrap-datepicker3.css",
-                    "dist/js/bootstrap-datepicker.min.js"
+                    "dist/js/bootstrap-datepicker.js"
                 ],
                 "bower-asset-ignore": []
             },
@@ -201,16 +243,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "dev-master",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd"
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd",
-                "reference": "086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/c0185ab7c75aab88762c5aae780b9d83b80eda72",
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -236,12 +278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "b135bf1a6d58ff94287f0a21455bfa6a1ddc7226"
+                "reference": "227746b29044a4c2160ae7c597c7f24aacac2635"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/b135bf1a6d58ff94287f0a21455bfa6a1ddc7226",
-                "reference": "b135bf1a6d58ff94287f0a21455bfa6a1ddc7226",
+                "url": "https://api.github.com/repos/moment/moment/zipball/227746b29044a4c2160ae7c597c7f24aacac2635",
+                "reference": "227746b29044a4c2160ae7c597c7f24aacac2635",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -268,53 +310,17 @@
             }
         },
         {
-            "name": "bower-asset/xaguilars-bootstrap-colorpicker",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mjolnic/bootstrap-colorpicker.git",
-                "reference": "642c84bf4a84aaa54dd10079bf441385be8d5e69"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mjolnic/bootstrap-colorpicker/zipball/642c84bf4a84aaa54dd10079bf441385be8d5e69",
-                "reference": "642c84bf4a84aaa54dd10079bf441385be8d5e69",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/bootstrap": ">=2",
-                "bower-asset/jquery": ">=1.10"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/css/bootstrap-colorpicker.css",
-                    "dist/js/bootstrap-colorpicker.js"
-                ],
-                "bower-asset-ignore": [
-                    "\\.*",
-                    "/index.html",
-                    "/package.json",
-                    "/composer.json",
-                    "/Gruntfile.js"
-                ],
-                "branch-alias": {
-                    "dev-master": "2.3.0-dev"
-                }
-            }
-        },
-        {
             "name": "fxp/composer-asset-plugin",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "bae7a15712e9339a2439aeca3b7c5ecf65b087d1"
+                "url": "https://github.com/fxpio/composer-asset-plugin.git",
+                "reference": "47c08367901b64d41d87f84e7f3fd2aa9417ea71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/bae7a15712e9339a2439aeca3b7c5ecf65b087d1",
-                "reference": "bae7a15712e9339a2439aeca3b7c5ecf65b087d1",
+                "url": "https://api.github.com/repos/fxpio/composer-asset-plugin/zipball/47c08367901b64d41d87f84e7f3fd2aa9417ea71",
+                "reference": "47c08367901b64d41d87f84e7f3fd2aa9417ea71",
                 "shasum": ""
             },
             "require": {
@@ -322,13 +328,13 @@
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "composer/composer": "~1.0@dev"
+                "composer/composer": "^1.0.0"
             },
             "type": "composer-plugin",
             "extra": {
                 "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -347,7 +353,7 @@
                 }
             ],
             "description": "NPM/Bower Dependency Manager for Composer",
-            "homepage": "https://github.com/francoispluchino/composer-asset-plugin",
+            "homepage": "https://github.com/fxpio/composer-asset-plugin",
             "keywords": [
                 "asset",
                 "bower",
@@ -357,7 +363,7 @@
                 "npm",
                 "package"
             ],
-            "time": "2016-02-25 16:35:08"
+            "time": "2016-07-14 08:50:38"
         },
         {
             "name": "smarty/smarty",
@@ -365,12 +371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "ff6a8521bb588187eefa2695c3959fe101d22c18"
+                "reference": "6d7d36d9a675f69a18f5a8722dd22c0f2f70504d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/ff6a8521bb588187eefa2695c3959fe101d22c18",
-                "reference": "ff6a8521bb588187eefa2695c3959fe101d22c18",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/6d7d36d9a675f69a18f5a8722dd22c0f2f70504d",
+                "reference": "6d7d36d9a675f69a18f5a8722dd22c0f2f70504d",
                 "shasum": ""
             },
             "require": {
@@ -412,11 +418,11 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-03-11 02:36:43"
+            "time": "2016-07-19 18:22:10"
         },
         {
             "name": "smtech/stmarks-colors",
-            "version": "dev-master",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smtech/stmarks-colors.git",
@@ -451,9 +457,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "smtech/stmarks-colors": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
