@@ -1,5 +1,7 @@
 # StMarksSmarty
 
+[![Latest Version](https://img.shields.io/packagist/v/smtech/stmarkssmarty.svg)](https://packagist.org/packages/smtech/stmarkssmarty)
+
 A wrapper for Smarty to provide a consistent UI for our scripts and apps.
 
 ## Install
