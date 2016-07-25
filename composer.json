@@ -6,17 +6,13 @@
         "battis/bootstrapsmarty": "~1.1",
         "smtech/stmarks-colors": "~1.0"
     },
-    "suggest": {
-	    "battis/appmetadata": "MySQL-backed globals array for app metadata storage"
-
-    },
     "authors": [
         {
             "name": "Seth Battis",
             "email": "sethbattis@stmarksschool.org"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
 	"autoload": {
 	    "psr-4": {
 		    "smtech\\StMarksSmarty\\" : "src/"
