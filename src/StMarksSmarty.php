@@ -1,92 +1,77 @@
 <?php
 
-/** StMarksSmarty and related classes */
-
 namespace smtech\StMarksSmarty;
 
-use \Battis\BootstrapSmarty\BootstrapSmarty;
+use Battis\BootstrapSmarty\BootstrapSmarty;
+use Battis\DataUtilities;
 
 /**
  * A wrapper for Smarty to set (and maintain) defaults
  *
  * @author Seth Battis <SethBattis@stmarksschool.org>
  **/
-class StMarksSmarty extends BootstrapSmarty {
-	
-	const KEY = 'StMarkSmarty';
-	
-	private $isFramed = false;
-	
-	public static function getSmarty($template = null, $config = null, $compile = null, $cache = null) {
-		if (self::$singleton === null) {
-			self::$singleton = new self($template, $config, $compile, $cache);
-		}
-		return self::$singleton;
-	}
+class StMarksSmarty extends BootstrapSmarty
+{
 
-	public function __construct($template = null, $config = null, $compile = null, $cache = null) {
-		parent::__construct($template, $config, $compile, $cache);
-		
-		$this->addTemplateDir(__DIR__ . '/../templates', self::KEY);
-		$this->addStylesheet(
-			(
-				!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ?
-					'http://' :
-					'https://'
-			) .
-			$_SERVER['SERVER_NAME'] . preg_replace("|^{$_SERVER['DOCUMENT_ROOT']}(.*)/src$|", '$1/css/StMarksSmarty.css', __DIR__),
-			self::KEY
-		);
-	}
-	
-	public function setFramed($isFramed) {
-		$this->isFramed = (bool) $isFramed;
-	}
-	
-	public function isFramed() {
-		return $this->isFramed;
-	}
-	
-	public function display($template = 'page.tpl', $cache_id = null, $compile_id = null, $parent = null) {
-		if (isset($GLOBALS['metadata'])) {
-			if (!isset($GLOBALS['metadata']['APP_URL'])) {
-				$GLOBALS['metadata']['APP_URL'] =
-				(
-					!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ?
-						'http://' :
-						'https://'
-				) .
-				$_SERVER['SERVER_NAME'] . preg_replace("|^{$_SERVER['DOCUMENT_ROOT']}(.*)$|", '$1', str_replace('/vendor/smtech/stmarkssmarty', '', __DIR__));
-			}
-			if (!isset($GLOBALS['metadata']['APP_NAME'])) {
-				$GLOBALS['metadata']['APP_NAME'] = 'St. Mark&rsquo;s School';
-			}
-			$this->assign('metadata', $GLOBALS['metadata']);
-		}
-		
-		if ($this->isFramed()) {
-			$this->addStylesheet(
-				(
-					!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ?
-						'http://' :
-						'https://'
-				) .
-				$_SERVER['SERVER_NAME'] . preg_replace("|^{$_SERVER['DOCUMENT_ROOT']}(.*)/src$|", '$1/css/StMarksSmarty.css?isFramed=true', __DIR__),
-				self::KEY
-			);
-		}
-		$this->assign('isFramed', $this->isFramed());
-		
-		parent::display($template, $cache_id, $compile_id, $parent);
-	}
-}
+    const KEY = 'StMarks-BootstrapSmarty';
 
-/**
- * All exceptions thrown by StMarkSmarty
- *
- * @author Seth Battis <SethBattis@stmarksschool.org>
- **/
-class StMarksSmarty_Exception extends \Battis\BootstrapSmarty\BootstrapSmarty_Exception {
+    private $isFramed = false;
+
+    /**
+     * @inheritDoc
+     *
+     * @param string $template
+     * @param string $config (Optional)
+     * @param string $compile (Optional)
+     * @param string $cache (Optional)
+     */
+    public function __construct($template = null, $config = null, $compile = null, $cache = null)
+    {
+        parent::__construct($template, $config, $compile, $cache);
+
+        $this->addTemplateDir(__DIR__ . '/../templates', self::KEY);
+        $this->addStylesheet(DataUtilities::URLfromPath(__DIR__ . '/../css/StMarksSmarty.css'), self::KEY);
+    }
+
+    /**
+     * Is this app displayed inside an `IFRAME`?
+     *
+     * @param boolean $isFramed
+     */
+    public function setFramed($isFramed)
+    {
+        $this->isFramed = ($isFramed == true);
+    }
+
+    /**
+     * Is this app displayed inside an `IFRAME`?
+     *
+     * @return boolean
+     */
+    public function isFramed()
+    {
+        return $this->isFramed;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @param string $template (Optional)
+     * @param string $cache_id (Optional)
+     * @param string $compile_id (Optional)
+     * @param string $parent (Optional)
+     * @return void
+     */
+    public function display($template = 'page.tpl', $cache_id = null, $compile_id = null, $parent = null)
+    {
+        if ($this->isFramed()) {
+            $this->addStylesheet(
+                DataUtilities::URLfromPath(__DIR__ . '/../css/StMarksSmarty.css') . '?isFramed=true',
+                self::KEY
+            );
+        }
+        $this->assign('isFramed', $this->isFramed());
+
+        parent::display($template, $cache_id, $compile_id, $parent);
+    }
 }
-	
-?>

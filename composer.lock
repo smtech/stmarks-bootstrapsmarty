@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/battis/bootstrapsmarty.git",
-                "reference": "7237df7760744c915dbb776c465b27b7e7917c4b"
+                "reference": "16f32e7c0acbab4be38f951178e958f283a4a3d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/battis/bootstrapsmarty/zipball/7237df7760744c915dbb776c465b27b7e7917c4b",
-                "reference": "7237df7760744c915dbb776c465b27b7e7917c4b",
+                "url": "https://api.github.com/repos/battis/bootstrapsmarty/zipball/16f32e7c0acbab4be38f951178e958f283a4a3d5",
+                "reference": "16f32e7c0acbab4be38f951178e958f283a4a3d5",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 }
             ],
             "description": "A wrapper for Smarty to set (and maintain) defaults within a Bootstrap UI environment",
-            "time": "2016-07-25 03:33:30"
+            "time": "2016-07-26 18:02:05"
         },
         {
             "name": "battis/data-utilities",
@@ -86,20 +86,20 @@
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.5",
+            "version": "v3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.1"
+                "bower-asset/jquery": ">=1.9.1,<4.0"
             },
             "type": "bower-asset-library",
             "extra": {
