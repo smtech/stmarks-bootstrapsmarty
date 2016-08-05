@@ -1,6 +1,7 @@
 # StMarksSmarty
 
 [![Latest Version](https://img.shields.io/packagist/v/smtech/stmarkssmarty.svg)](https://packagist.org/packages/smtech/stmarkssmarty)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/smtech/stmarks-bootstrapsmarty/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/smtech/stmarks-bootstrapsmarty/?branch=master)
 
 A wrapper for Smarty to provide a consistent UI for our scripts and apps.
 
