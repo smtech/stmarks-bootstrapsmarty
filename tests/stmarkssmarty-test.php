@@ -21,5 +21,5 @@ $ui->enable(StMarksSmarty::MODULE_DATEPICKER);
 $ui->setFramed(true);
 
 $ui->display("form-page.tpl");
-	
+    
 ?>

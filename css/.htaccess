@@ -1,6 +1,6 @@
 # force processing of StMarksSmarty.css as PHP
 <Files StMarksSmarty.css>
-	ForceType application/x-httpd-php
-	SetHandler application/x-httpd-php
+    ForceType application/x-httpd-php
+    SetHandler application/x-httpd-php
 </Files>
 

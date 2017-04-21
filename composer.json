@@ -14,9 +14,9 @@
         }
     ],
     "minimum-stability": "stable",
-	"autoload": {
-	    "psr-4": {
-		    "smtech\\StMarksSmarty\\" : "src/"
-	    }
+    "autoload": {
+        "psr-4": {
+            "smtech\\StMarksSmarty\\" : "src/"
+        }
     }
 }
