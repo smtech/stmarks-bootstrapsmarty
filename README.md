@@ -48,4 +48,4 @@ If your app will be presented as an embedded `iframe`:
 $smarty = StMarksSmarty::getSmarty(true);
 ```
 
-Complete [API documentation](http://htmlpreview.github.io/?https://github.com/smtech/stmarkssmarty/blob/master/doc/index.html) is included in the repo and the [Smarty API documentation](http://www.smarty.net/docs/en/) is also online.
+Complete [API documentation](http://smtech.github.io/stmarkssmarty/index.html) is included in the repo and the [Smarty API documentation](http://www.smarty.net/docs/en/) is also online.
